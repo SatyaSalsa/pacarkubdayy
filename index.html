@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>psst... ada pesan buat kamu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LAYAR 1: Intro -->
+  <section id="screen-intro" class="screen active">
+    <div class="wrap">
+
+      <div class="mascot-wrap">
+        <span class="say" id="say">eh?!</span>
+        <svg class="mascot" id="mascot" viewBox="0 0 200 182" aria-label="maskot kelinci">
+          <!-- telinga -->
+          <g stroke="#4a3b3b" stroke-width="4" stroke-linejoin="round">
+            <ellipse cx="70" cy="42" rx="20" ry="40" fill="#fff" transform="rotate(-8 70 42)"/>
+            <ellipse cx="130" cy="46" rx="20" ry="40" fill="#fff" transform="rotate(16 130 46)"/>
+          </g>
+          <ellipse cx="70" cy="46" rx="9" ry="26" fill="#ffb3c6" transform="rotate(-8 70 42)"/>
+          <ellipse cx="130" cy="50" rx="9" ry="26" fill="#ffb3c6" transform="rotate(16 130 46)"/>
+          <!-- kepala -->
+          <ellipse cx="100" cy="108" rx="66" ry="52" fill="#fff" stroke="#4a3b3b" stroke-width="4"/>
+          <!-- pipi -->
+          <ellipse cx="55" cy="122" rx="11" ry="7" fill="#ffb3c6" opacity=".8"/>
+          <ellipse cx="145" cy="122" rx="11" ry="7" fill="#ffb3c6" opacity=".8"/>
+          <!-- mata normal -->
+          <g class="eyes-normal">
+            <g id="pupils">
+              <circle cx="74" cy="108" r="7.5" fill="#4a3b3b"/>
+              <circle cx="126" cy="108" r="7.5" fill="#4a3b3b"/>
+              <circle cx="76.5" cy="105" r="2.4" fill="#fff"/>
+              <circle cx="128.5" cy="105" r="2.4" fill="#fff"/>
+            </g>
+          </g>
+          <!-- mata senang -->
+          <g class="eyes-happy" fill="none" stroke="#4a3b3b" stroke-width="4.5" stroke-linecap="round">
+            <path d="M65 112 Q74 98 83 112"/>
+            <path d="M117 112 Q126 98 135 112"/>
+          </g>
+          <!-- hidung -->
+          <ellipse cx="100" cy="117" rx="4.5" ry="3.2" fill="#ff8fab"/>
+          <!-- mulut -->
+          <path class="mouth-normal" d="M91 124 Q95.5 131 100 125 Q104.5 131 109 124" fill="none" stroke="#4a3b3b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="mouth-happy" d="M89 123 Q100 142 111 123 Z" fill="#ff8fab" stroke="#4a3b3b" stroke-width="3.5" stroke-linejoin="round"/>
+          <path class="mouth-sad" d="M91 134 Q100 123 109 134" fill="none" stroke="#4a3b3b" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- air mata -->
+          <path class="tear" d="M62 118 Q56 128 62 132 Q68 128 62 118 Z" fill="#bfe3f7" stroke="#4a3b3b" stroke-width="2.5" stroke-linejoin="round"/>
+          <!-- tangan -->
+          <g fill="#fff" stroke="#4a3b3b" stroke-width="4">
+            <circle cx="62" cy="166" r="14"/>
+            <circle cx="138" cy="166" r="14"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="card">
+        <p class="tag">psst...</p>
+        <h1>aku punya <span class="hl">pesan secret</span> lohh</h1>
+        <p class="sub">mau dibuka ga?</p>
+
+        <div class="envelope" id="envelope">
+          <svg viewBox="0 0 160 110" class="env-svg" aria-hidden="true">
+            <rect x="4" y="12" width="152" height="94" rx="10" fill="#ffe69a" stroke="#4a3b3b" stroke-width="4"/>
+            <path d="M8 18 L80 68 L152 18" fill="none" stroke="#4a3b3b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <iconify-icon class="env-heart" icon="ph:heart-fill"></iconify-icon>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-yes" id="btn-yes">yes</button>
+          <button class="btn btn-no" id="btn-no">no</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LAYAR 2: Melody ngambek (jika NO) -->
+  <section id="screen-no" class="screen">
+    <div class="card no-card">
+      <div class="tv">
+        <!-- Taruh video kamu di assets/melody.mp4 -->
+        <video id="melody-video" autoplay loop muted playsinline>
+          <source src="assets/melody.mp4" type="video/mp4">
+        </video>
+        <div id="melody-fallback" hidden>
+          <iconify-icon icon="ph:heart-fill"></iconify-icon>
+        </div>
+      </div>
+      <p class="grumble">HMPPPH KAMU GA SAYANG AKU!?</p>
+      <button class="btn btn-small" id="btn-back-no">
+        <iconify-icon icon="ph:arrow-left-bold"></iconify-icon> yaudah, balik
+      </button>
+    </div>
+  </section>
+
+  <!-- LAYAR 3: Surat (jika YES) -->
+  <section id="screen-letter" class="screen">
+
+    <header class="topbar">
+      <button class="circle-btn" id="btn-back-letter" aria-label="Kembali">
+        <iconify-icon icon="ph:arrow-left-bold"></iconify-icon>
+      </button>
+      <div class="topbar-mid">
+        <span>bday letter</span>
+        <div class="progress"><i id="progress-fill"></i></div>
+      </div>
+      <button class="circle-btn pink" id="heart-btn" aria-label="Kirim cinta">
+        <iconify-icon icon="ph:heart-fill"></iconify-icon>
+      </button>
+    </header>
+
+    <article class="notebook">
+      <iconify-icon class="sticker s1" icon="ph:star-fill"></iconify-icon>
+      <iconify-icon class="sticker s2" icon="ph:flower-fill"></iconify-icon>
+
+      <figure class="polaroid" id="polaroid">
+        <div class="polaroid-img">
+          <iconify-icon class="ph-holder" icon="ph:heart-fill"></iconify-icon>
+          <!-- Taruh foto berdua di assets/foto.jpg -->
+          <img src="assets/foto.jpg" alt="Foto kita" onerror="this.style.display='none'">
+        </div>
+        <figcaption>i love uu</figcaption>
+      </figure>
+
+      <h2 class="title">happy birthday, my love!</h2>
+      <p class="from">from your lovely</p>
+
+      <div class="lines">
+        <p class="reveal">first of all, i just wanna say how grateful i am to have you in my life. hari ini adalah hari spesial karena seseorang yang begitu berarti buat aku dilahirkan ke dunia. someone who makes my days better just by being around, someone who can make me smile even when i'm having the worst day, and someone who has become such a special part of my life.</p>
+
+        <p class="reveal">di hari ulang tahun kamu ini, aku berharap semua hal baik selalu datang ke hidup kamu. semoga kamu selalu diberikan kesehatan, kebahagiaan, umur yang panjang, rezeki yang lancar, dan semua hal yang selama ini kamu semogakan bisa satu per satu menjadi kenyataan. i hope life treats you gently, i hope every step you take brings you closer to your dreams, and i hope you never lose the beautiful parts of yourself. kalaupun nanti ada hari-hari yang terasa berat, i hope you always remember that <mark class="hl">you're stronger than you think and you're never alone.</mark></p>
+
+        <p class="reveal">thank you for being you. thank you for all the little things you do, for your time, your effort, your attention, and for all the moments we've shared together. mungkin aku nggak selalu bisa mengungkapkan semuanya dengan kata-kata, tapi please know that i appreciate you more than you realize. aku juga sadar kalau kita bukan dua orang yang sempurna. pasti ada salah, ada perbedaan pendapat, ada waktu di mana kita nggak saling memahami. but i hope we can keep learning, growing, and choosing each other even on the days when things aren't easy.</p>
+
+        <p class="reveal">i wish i could give you the world, but for now, let me be someone who always supports you, celebrates your achievements, listens to your stories, and stays beside you through your ups and downs. i want to see you grow into the person you've always dreamed of becoming. aku mau jadi salah satu orang yang paling bahagia ketika melihat kamu berhasil meraih apa yang kamu inginkan.</p>
+
+        <p class="reveal">one more thing, please don't be too hard on yourself. you don't have to figure everything out at once. take your time, enjoy your process, and remember that you're doing better than you think. <mark class="hl">i'm proud of you,</mark> not only for the things you achieve, but also for all the little battles you fight that other people might never know about.</p>
+
+        <p class="reveal">semoga di umur yang baru ini kamu lebih banyak menemukan alasan untuk tersenyum daripada bersedih. semoga hal-hal yang membuat kamu khawatir perlahan menemukan jalan keluarnya. and most importantly, i hope you always feel loved, appreciated, and valued, because you truly deserve all the good things in this world.</p>
+
+        <p class="reveal">happy birthday once again, sayang. thank you for existing, thank you for coming into my life, and thank you for being a part of my story. let's make more beautiful memories, take more pictures, laugh at silly things, and create more moments that we'll look back on someday.</p>
+
+        <p class="reveal"><mark class="hl">i love you, more than words can explain.</mark> here's to another year of your life, another chapter of your journey, and hopefully many more chapters of us.</p>
+
+        <p class="reveal signature" id="signature">
+          enjoy your special day, my favorite person. you deserve the whole universe and everything beautiful in it.
+          <iconify-icon icon="ph:heart-fill"></iconify-icon>
+        </p>
+      </div>
+    </article>
+
+    <button class="btn btn-small bottom-back" id="btn-back-letter-2">
+      <iconify-icon icon="ph:arrow-left-bold"></iconify-icon> kembali
+    </button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
